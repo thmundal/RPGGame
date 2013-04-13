@@ -13,7 +13,7 @@ public class GUI_root : MonoBehaviour {
 	void OnGUI() {
 		if(test.OnClick()) {
 			if(!_isMousePlaceInProgress) {
-				GameObject _objectToPlace = Instantiate(Resources.LoadAssetAtPath ("Assets/Prefabs/enemyAITest.prefab", typeof(GameObject))) as GameObject;
+				GameObject _objectToPlace = GetPrefab("enemyAITest");
 				_objectToPlace.GetComponent<BoxCollider>().enabled = false;
 				
 				Messenger<GameObject>.Broadcast("placeObject", _objectToPlace);
@@ -31,5 +31,8 @@ public class GUI_root : MonoBehaviour {
 	
 	private void mousePlaceRegister(bool yesNo) {
 		_isMousePlaceInProgress = yesNo;
+	}
+	public GameObject GetPrefab(string PrefabName) {
+		return Instantiate(Resources.LoadAssetAtPath ("Assets/Prefabs/" + PrefabName + ".prefab", typeof(GameObject))) as GameObject;
 	}
 }

@@ -12,6 +12,7 @@ public class GUI_Element {
 	private Vector2 _position;
 	private Vector2 _size;
 	
+	
 	// Public variables
 	
 	#region Constructor and Overloads
@@ -71,13 +72,13 @@ public enum GUI_Type {
 	Button,
 	RepeatButton,
 	TextField,
-	PasswordField,
-	TextArea,
-	Toggle,
-	Toolbar,
-	SelectionGrid,
-	HorizontalScrollbar,
-	VerticalScrollbar
+	//PasswordField, // Needs maskfield
+	TextArea
+	//Toggle,
+	//Toolbar,
+	//SelectionGrid,
+	//HorizontalScrollbar,
+	//VerticalScrollbar
 }
 
 public enum GUI_Align {

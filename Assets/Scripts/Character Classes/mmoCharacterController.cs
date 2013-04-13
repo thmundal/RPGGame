@@ -6,7 +6,7 @@ public class mmoCharacterController : MonoBehaviour {
 	public bool firstPerson = false;
 	
 	private Transform cameraPosition;
-	private GameObject camera;
+	private GameObject _camera;
 	private Transform _myTransform;
 		
 	private float _zoomDistance = 5.0f;
@@ -27,22 +27,20 @@ public class mmoCharacterController : MonoBehaviour {
 	private float _jumpSpeed = 500f;
 	private bool isGrounded = false;
 	
-	private float xMove = 0;
-	private float zMove = 0;
 	private bool _canFly = false;
 	
 	private Rigidbody[] rigids;
 	
 	void Start () {
 		_myTransform = transform;
-		camera = GameObject.FindGameObjectWithTag("MainCamera");
+		_camera = GameObject.FindGameObjectWithTag("MainCamera");
 		
-		if(camera == null) {
+		if(_camera == null) {
 			Debug.LogError("Cannot find camera, aborting");
 			return;
 		}
 		
-		camera.transform.position = _myTransform.position;
+		_camera.transform.position = _myTransform.position;
 		
 		rBody = GetComponent("Rigidbody") as Rigidbody;
 		if(rBody == null)
@@ -81,7 +79,7 @@ public class mmoCharacterController : MonoBehaviour {
  
 		// Check for objects in the line-of-sights and adjust the zoomDistance
         RaycastHit hit;
-        if (Physics.Linecast (_myTransform.position, camera.transform.position, out hit)) {
+        if (Physics.Linecast (_myTransform.position, _camera.transform.position, out hit)) {
                 _zoomDistance -=  hit.distance;
         }
 		
@@ -90,8 +88,8 @@ public class mmoCharacterController : MonoBehaviour {
 		
 		
 		position = rotation * negDistance + _myTransform.position;
-	    camera.transform.rotation = rotation;
-        camera.transform.position = position;
+	    _camera.transform.rotation = rotation;
+        _camera.transform.position = position;
 		
 		// Rotate the object while holding down the right mouse button
 		if(Input.GetMouseButton(1)) {

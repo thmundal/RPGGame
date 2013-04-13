@@ -16,7 +16,6 @@ public class EnemyAI : MonoBehaviour {
 	private DateTime _aggroTime;
 	private DateTime _timeNow;
 	private DateTime _aggroTimeoutTimer;
-	private int _rayCastDistance;
 	private Vector3 dir;
 	
 	private bool _stopMoving;
@@ -46,7 +45,6 @@ public class EnemyAI : MonoBehaviour {
 		rotateSpeed = 2;
 		aggroDistance = 20;
 		_hasAggro = false;
-		_rayCastDistance = 10;
 		_stopMoving = false;
 	}
 	

@@ -56,8 +56,8 @@ public class GUI_Element {
 		if(_visible == true) {
 			Type type = typeof(GUI);
 			System.Object obj = Activator.CreateInstance(type);
-			MethodInfo method = type.GetMethod(_type.ToString());
-			method.Invoke(obj, new object[] { CreatePosition() });
+			MethodInfo method = type.GetMethod(_type.ToString(), new [] {typeof(Rect), typeof(string) }); //, new [] {typeof(Rect) }
+			method.Invoke(obj, new object[] { CreatePosition(), "test" });
 		}
 	}
 	

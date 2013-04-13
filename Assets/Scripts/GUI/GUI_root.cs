@@ -8,6 +8,7 @@ public class GUI_root : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		test.Display();
+		if(test.OnClick())
+			Debug.Log ("blah");
 	}
 }

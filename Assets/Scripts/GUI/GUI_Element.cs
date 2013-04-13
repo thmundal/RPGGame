@@ -53,13 +53,18 @@ public class GUI_Element {
 	}
 	#endregion
 	
-	public void Display() {
+	public bool Display() {
 		if(_visible == true) {
 			Type type = typeof(GUI);
 			System.Object obj = Activator.CreateInstance(type);
 			MethodInfo method = type.GetMethod(_type.ToString(), new [] {typeof(Rect), typeof(string) }); //, new [] {typeof(Rect) }
-			method.Invoke(obj, new object[] { CreatePosition(), "test" });
+			return (bool) method.Invoke(obj, new object[] { CreatePosition(), "test" });
 		}
+		return false;
+	}
+	
+	public bool OnClick() {
+		return Display ();
 	}
 	
 	private Rect CreatePosition() {

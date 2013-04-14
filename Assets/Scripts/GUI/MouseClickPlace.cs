@@ -2,18 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class MouseClickPlace : MonoBehaviour {
-	private float _mouseposX;
-	private Vector3 _rayHitWorldPos;
-	private Vector3 targetPosition;
 	private GameObject _objectToPlace;
-
-	// Use this for initialization
-	void Start () {
-		//_objectToPlace = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		//_objectToPlace.GetComponent<BoxCollider>().enabled = false;
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(_objectToPlace != null) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -22,7 +12,7 @@ public class MouseClickPlace : MonoBehaviour {
 			layerMask = ~layerMask;
 			
 			if(Physics.Raycast (ray, out hit, Mathf.Infinity, layerMask)) {
-				_objectToPlace.transform.position = hit.point;
+				_objectToPlace.transform.position = hit.point + new Vector3(0, _objectToPlace.transform.localScale.y / 2, 0);
 			}
 			
 			if(Input.GetMouseButtonDown(0)) {
@@ -49,6 +39,5 @@ public class MouseClickPlace : MonoBehaviour {
 			
 			Messenger<bool>.Broadcast("mousePlaceRegister", true);
 		}
-	}
-	
+	}	
 }
